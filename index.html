@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>WIZTEC Service Management</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-mobile-screen-button"></i>
+
+            <h2>WIZTEC</h2>
+
+        </div>
+
+
+        <ul class="menu">
+
+            <li class="active">
+
+                <a href="#">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="#customers">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    Customers
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="#services">
+
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                    Services
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="#repairs">
+
+                    <i class="fa-solid fa-mobile-screen"></i>
+
+                    Repairs
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="#payments">
+
+                    <i class="fa-solid fa-money-bill-wave"></i>
+
+                    Payments
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="#settings">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    Settings
+
+                </a>
+
+            </li>
+
+        </ul>
+
+
+        <div class="sidebar-footer">
+
+            <p>
+
+                WIZTEC Mobile Repair
+
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <button id="menuBtn">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <h1>
+
+                    Service Dashboard
+
+                </h1>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="notification">
+
+                    <i class="fa-solid fa-bell"></i>
+
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="avatar">
+
+                        A
+
+                    </div>
+
+                    <div>
+
+                        <h4>Administrator</h4>
+
+                        <span>Admin</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+
+        <section class="dashboard">
+
+
+            <div class="welcome">
+
+                <div>
+
+                    <h2>
+
+                        Welcome Back!
+
+                    </h2>
+
+                    <p>
+
+                        Manage customers, repairs and services from one place.
+
+                    </p>
+
+                </div>
+
+
+                <button class="new-service-btn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    New Service Request
+
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon customers">
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </div>
+
+                    <div>
+
+                        <p>Total Customers</p>
+
+                        <h2>0</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon pending">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    </div>
+
+                    <div>
+
+                        <p>Pending Repairs</p>
+
+                        <h2>0</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon progress">
+
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                    </div>
+
+                    <div>
+
+                        <p>In Progress</p>
+
+                        <h2>0</h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon completed">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    </div>
+
+                    <div>
+
+                        <p>Completed</p>
+
+                        <h2>0</h2>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- SERVICE CATEGORIES -->
+
+            <section class="service-section">
+
+                <h2>
+
+                    Service Categories
+
+                </h2>
+
+
+                <div class="service-grid">
+
+
+                    <div class="service-card">
+
+                        <i class="fa-solid fa-mobile-screen"></i>
+
+                        <h3>Screen Repair</h3>
+
+                        <p>
+
+                            Display replacement and cracked screen repair.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <i class="fa-solid fa-droplet"></i>
+
+                        <h3>Water Damage</h3>
+
+                        <p>
+
+                            Professional water damage diagnosis and repair.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <i class="fa-solid fa-battery-half"></i>
+
+                        <h3>Battery Repair</h3>
+
+                        <p>
+
+                            Battery replacement and power issues.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <i class="fa-solid fa-unlock"></i>
+
+                        <h3>Phone Unlocking</h3>
+
+                        <p>
+
+                            Device unlocking and software support.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <i class="fa-solid fa-database"></i>
+
+                        <h3>Data Recovery</h3>
+
+                        <p>
+
+                            Recover lost files and important data.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="service-card">
+
+                        <i class="fa-solid fa-microchip"></i>
+
+                        <h3>Diagnostics</h3>
+
+                        <p>
+
+                            Complete hardware and software diagnosis.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- RECENT REQUESTS -->
+
+            <section class="recent-section">
+
+                <div class="section-header">
+
+                    <h2>
+
+                        Recent Service Requests
+
+                    </h2>
+
+                    <button>
+
+                        View All
+
+                    </button>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Job ID</th>
+
+                                <th>Customer</th>
+
+                                <th>Device</th>
+
+                                <th>Service</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>#WIZ001</td>
+
+                                <td>No Records Yet</td>
+
+                                <td>-</td>
+
+                                <td>-</td>
+
+                                <td>
+
+                                    <span class="status pending-status">
+
+                                        Pending
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button class="view-btn">
+
+                                        View
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
