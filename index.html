@@ -208,11 +208,11 @@
                 </div>
 
 
-                <button class="new-service-btn">
+                <button class="new-service-btn" id="openServiceForm">
 
-                    <i class="fa-solid fa-plus"></i>
+                     <i class="fa-solid fa-plus"></i>
 
-                    New Service Request
+                     New Service Request
 
                 </button>
 
@@ -504,6 +504,354 @@
         </section>
 
     </main>
+            <!-- SERVICE REQUEST MODAL -->
+
+<div class="modal" id="serviceModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <h2>New Customer Service Request</h2>
+                <p>Register a customer and create a repair job.</p>
+            </div>
+
+            <button class="close-btn" id="closeServiceForm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="serviceForm">
+
+            <!-- AUTOMATIC JOB ID -->
+
+            <div class="form-group">
+
+                <label>Job ID</label>
+
+                <input
+                    type="text"
+                    id="jobId"
+                    name="jobId"
+                    readonly
+                >
+
+            </div>
+
+
+            <h3 class="form-section-title">
+                Customer Information
+            </h3>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Customer Name *</label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        name="customerName"
+                        placeholder="Enter customer name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Phone Number *</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="+232 XXXXXXXX"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="customer@email.com"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <h3 class="form-section-title">
+                Device Information
+            </h3>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Device Brand *</label>
+
+                    <select
+                        id="deviceBrand"
+                        name="deviceBrand"
+                        required
+                    >
+
+                        <option value="">
+                            Select Brand
+                        </option>
+
+                        <option>Apple</option>
+                        <option>Samsung</option>
+                        <option>Huawei</option>
+                        <option>Tecno</option>
+                        <option>Infinix</option>
+                        <option>Itel</option>
+                        <option>Xiaomi</option>
+                        <option>Google</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Device Model *</label>
+
+                    <input
+                        type="text"
+                        id="deviceModel"
+                        name="deviceModel"
+                        placeholder="Example: iPhone 12"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>IMEI / Serial Number</label>
+
+                    <input
+                        type="text"
+                        id="imei"
+                        name="imei"
+                        placeholder="Enter IMEI or Serial Number"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <h3 class="form-section-title">
+                Service Information
+            </h3>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Service Type *</label>
+
+                    <select
+                        id="serviceType"
+                        name="serviceType"
+                        required
+                    >
+
+                        <option value="">
+                            Select Service Type
+                        </option>
+
+                        <option value="Hardware">
+                            Hardware Service
+                        </option>
+
+                        <option value="Software">
+                            Software Service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Service Required *</label>
+
+                    <select
+                        id="serviceRequired"
+                        name="serviceRequired"
+                        required
+                    >
+
+                        <option value="">
+                            Select Service
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Estimated Cost (NLe)</label>
+
+                    <input
+                        type="number"
+                        id="estimatedCost"
+                        name="estimatedCost"
+                        placeholder="0.00"
+                        min="0"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Problem Description *</label>
+
+                <textarea
+                    id="problemDescription"
+                    name="problemDescription"
+                    rows="5"
+                    placeholder="Describe the customer's device problem..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <h3 class="form-section-title">
+                Payment Information
+            </h3>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Payment Status *</label>
+
+                    <select
+                        id="paymentStatus"
+                        name="paymentStatus"
+                        required
+                    >
+
+                        <option value="Unpaid">
+                            Unpaid
+                        </option>
+
+                        <option value="Partial">
+                            Partial Payment
+                        </option>
+
+                        <option value="Paid">
+                            Fully Paid
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Amount Paid (NLe)</label>
+
+                    <input
+                        type="number"
+                        id="amountPaid"
+                        name="amountPaid"
+                        placeholder="0.00"
+                        min="0"
+                        value="0"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Repair Status</label>
+
+                    <select
+                        id="repairStatus"
+                        name="repairStatus"
+                    >
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Diagnosing">
+                            Diagnosing
+                        </option>
+
+                        <option value="In Progress">
+                            In Progress
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelServiceForm"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Service Request
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 
     <script src="script.js"></script>
