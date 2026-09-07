@@ -401,41 +401,169 @@ function updateDashboardStatistics(requests) {
         completedRepairs;
 
 }
-function displayRecentRequests(requests) {
+/* =========================================
+   SERVICE DETAILS MODAL
+========================================= */
+
+.details-modal-content {
+
+    max-width: 850px;
+
+}
 
 
-    const table =
-        document.getElementById(
-            "serviceRequestsTable"
-        );
+.details-section {
+
+    margin-bottom: 25px;
+
+    padding: 20px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: #fafafa;
+
+}
 
 
-    table.innerHTML = "";
+.details-section h3 {
+
+    margin-bottom: 20px;
+
+    color: #0b2b55;
+
+    font-size: 17px;
+
+}
 
 
-    /* NO REQUESTS */
+.details-section h3 i {
 
-    if (requests.length === 0) {
+    color: #2563eb;
 
-        table.innerHTML = `
+    margin-right: 8px;
 
-            <tr>
+}
 
-                <td colspan="6"
-                    style="text-align:center;">
 
-                    No service requests found.
+.details-grid {
 
-                </td>
+    display: grid;
 
-            </tr>
+    grid-template-columns: repeat(3, 1fr);
 
-        `;
+    gap: 20px;
 
-        return;
+}
+
+
+.details-grid div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+}
+
+
+.details-grid span {
+
+    font-size: 12px;
+
+    color: #777;
+
+}
+
+
+.details-grid strong {
+
+    font-size: 15px;
+
+    color: #222;
+
+    word-break: break-word;
+
+}
+
+
+.problem-box {
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: white;
+
+    border-radius: 8px;
+
+    border-left: 4px solid #2563eb;
+
+}
+
+
+.problem-box span {
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+.problem-box p {
+
+    margin-top: 8px;
+
+    color: #555;
+
+    line-height: 1.6;
+
+}
+
+
+.status-update-container {
+
+    display: flex;
+
+    gap: 15px;
+
+}
+
+
+.status-update-container select {
+
+    flex: 1;
+
+    padding: 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+}
+
+
+@media (max-width: 768px) {
+
+    .details-grid {
+
+        grid-template-columns: 1fr;
 
     }
 
+
+    .status-update-container {
+
+        flex-direction: column;
+
+    }
+
+}
 
     /* DISPLAY ONLY 10 LATEST */
 
@@ -568,6 +696,304 @@ document.addEventListener(
     function () {
 
         loadDashboardData();
+
+    }
+);
+
+/* =========================================
+   SERVICE REQUEST DETAILS
+========================================= */
+
+
+let currentRequest = null;
+
+
+const detailsModal =
+    document.getElementById(
+        "detailsModal"
+    );
+
+
+const closeDetailsModal =
+    document.getElementById(
+        "closeDetailsModal"
+    );
+
+
+function openRequestDetails(request) {
+
+
+    currentRequest = request;
+
+
+    document.getElementById(
+        "detailsJobId"
+    ).textContent =
+        request["Job ID"] || "-";
+
+
+    /* CUSTOMER */
+
+    document.getElementById(
+        "detailCustomerName"
+    ).textContent =
+        request["Customer Name"] || "-";
+
+
+    document.getElementById(
+        "detailPhone"
+    ).textContent =
+        request["Phone"] || "-";
+
+
+    document.getElementById(
+        "detailEmail"
+    ).textContent =
+        request["Email"] || "-";
+
+
+    /* DEVICE */
+
+    document.getElementById(
+        "detailBrand"
+    ).textContent =
+        request["Device Brand"] || "-";
+
+
+    document.getElementById(
+        "detailModel"
+    ).textContent =
+        request["Device Model"] || "-";
+
+
+    document.getElementById(
+        "detailImei"
+    ).textContent =
+        request["IMEI / Serial Number"] || "-";
+
+
+    /* SERVICE */
+
+    document.getElementById(
+        "detailServiceType"
+    ).textContent =
+        request["Service Type"] || "-";
+
+
+    document.getElementById(
+        "detailService"
+    ).textContent =
+        request["Service Required"] || "-";
+
+
+    document.getElementById(
+        "detailEstimatedCost"
+    ).textContent =
+        "NLe " +
+        (
+            request["Estimated Cost"] || 0
+        );
+
+
+    document.getElementById(
+        "detailProblem"
+    ).textContent =
+        request["Problem Description"] || "-";
+
+
+    /* PAYMENT */
+
+    const estimatedCost =
+        Number(
+            request["Estimated Cost"]
+        ) || 0;
+
+
+    const amountPaid =
+        Number(
+            request["Amount Paid"]
+        ) || 0;
+
+
+    const balance =
+        estimatedCost -
+        amountPaid;
+
+
+    document.getElementById(
+        "detailCost"
+    ).textContent =
+        "NLe " +
+        estimatedCost.toFixed(2);
+
+
+    document.getElementById(
+        "detailAmountPaid"
+    ).textContent =
+        "NLe " +
+        amountPaid.toFixed(2);
+
+
+    document.getElementById(
+        "detailBalance"
+    ).textContent =
+        "NLe " +
+        balance.toFixed(2);
+
+
+    /* STATUS */
+
+    document.getElementById(
+        "updateRepairStatus"
+    ).value =
+        request["Repair Status"] ||
+        "Pending";
+
+
+    detailsModal.classList.add(
+        "show"
+    );
+
+}
+closeDetailsModal.addEventListener(
+    "click",
+    function () {
+
+        detailsModal.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+window.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target === detailsModal
+        ) {
+
+            detailsModal.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+const saveStatusBtn =
+    document.getElementById(
+        "saveStatusBtn"
+    );
+
+
+saveStatusBtn.addEventListener(
+    "click",
+    async function () {
+
+
+        if (!currentRequest) {
+
+            return;
+
+        }
+
+
+        const newStatus =
+            document.getElementById(
+                "updateRepairStatus"
+            ).value;
+
+
+        const originalText =
+            saveStatusBtn.innerHTML;
+
+
+        saveStatusBtn.disabled =
+            true;
+
+
+        saveStatusBtn.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Updating...';
+
+
+        try {
+
+
+            await fetch(
+                SCRIPT_URL,
+                {
+
+                    method: "POST",
+
+                    mode: "no-cors",
+
+                    headers: {
+
+                        "Content-Type":
+                            "text/plain"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        action:
+                            "updateStatus",
+
+                        jobId:
+                            currentRequest["Job ID"],
+
+                        repairStatus:
+                            newStatus
+
+                    })
+
+                }
+            );
+
+
+            alert(
+                "Repair status updated successfully."
+            );
+
+
+            detailsModal.classList.remove(
+                "show"
+            );
+
+
+            await loadDashboardData();
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(
+                error
+            );
+
+
+            alert(
+                "Unable to update repair status."
+            );
+
+        }
+
+        finally {
+
+
+            saveStatusBtn.disabled =
+                false;
+
+
+            saveStatusBtn.innerHTML =
+                originalText;
+
+        }
 
     }
 );
