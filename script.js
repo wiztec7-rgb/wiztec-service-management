@@ -278,3 +278,296 @@ serviceForm.addEventListener("submit", async function (event) {
     }
 
 });
+
+/* ========================================
+   LOAD DASHBOARD DATA FROM GOOGLE SHEETS
+======================================== */
+
+async function loadDashboardData() {
+
+    try {
+
+        const response =
+            await fetch(SCRIPT_URL);
+
+
+        const result =
+            await response.json();
+
+
+        if (!result.success) {
+
+            console.error(
+                "Unable to load dashboard data:",
+                result.message
+            );
+
+            return;
+
+        }
+
+
+        const requests =
+            result.requests || [];
+
+
+        updateDashboardStatistics(requests);
+
+
+        displayRecentRequests(requests);
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Dashboard loading error:",
+            error
+        );
+
+    }
+
+}
+function updateDashboardStatistics(requests) {
+
+
+    /* UNIQUE CUSTOMERS */
+
+    const customers =
+        new Set(
+            requests.map(
+                request =>
+                    request["Customer Name"]
+            )
+        );
+
+
+    const totalCustomers =
+        customers.size;
+
+
+    /* PENDING REPAIRS */
+
+    const pendingRepairs =
+        requests.filter(
+            request =>
+                request["Repair Status"] ===
+                "Pending"
+        ).length;
+
+
+    /* IN PROGRESS */
+
+    const inProgressRepairs =
+        requests.filter(
+            request =>
+                request["Repair Status"] ===
+                "In Progress"
+        ).length;
+
+
+    /* COMPLETED */
+
+    const completedRepairs =
+        requests.filter(
+            request =>
+                request["Repair Status"] ===
+                "Completed"
+        ).length;
+
+
+    document.getElementById(
+        "totalCustomers"
+    ).textContent =
+        totalCustomers;
+
+
+    document.getElementById(
+        "pendingRepairs"
+    ).textContent =
+        pendingRepairs;
+
+
+    document.getElementById(
+        "inProgressRepairs"
+    ).textContent =
+        inProgressRepairs;
+
+
+    document.getElementById(
+        "completedRepairs"
+    ).textContent =
+        completedRepairs;
+
+}
+function displayRecentRequests(requests) {
+
+
+    const table =
+        document.getElementById(
+            "serviceRequestsTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    /* NO REQUESTS */
+
+    if (requests.length === 0) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="6"
+                    style="text-align:center;">
+
+                    No service requests found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* DISPLAY ONLY 10 LATEST */
+
+    const recentRequests =
+        requests.slice(0, 10);
+
+
+    recentRequests.forEach(
+        request => {
+
+
+            const row =
+                document.createElement("tr");
+
+
+            const jobId =
+                request["Job ID"] || "-";
+
+
+            const customer =
+                request["Customer Name"] || "-";
+
+
+            const deviceBrand =
+                request["Device Brand"] || "";
+
+
+            const deviceModel =
+                request["Device Model"] || "";
+
+
+            const service =
+                request["Service Required"] || "-";
+
+
+            const status =
+                request["Repair Status"] || "Pending";
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${jobId}
+                </td>
+
+
+                <td>
+                    ${customer}
+                </td>
+
+
+                <td>
+                    ${deviceBrand}
+                    ${deviceModel}
+                </td>
+
+
+                <td>
+                    ${service}
+                </td>
+
+
+                <td>
+
+                    <span class="status
+                        ${getStatusClass(status)}">
+
+                        ${status}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        class="view-btn">
+
+                        View
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+function getStatusClass(status) {
+
+
+    switch (status) {
+
+
+        case "Pending":
+
+            return "pending-status";
+
+
+        case "Diagnosing":
+
+            return "diagnosing-status";
+
+
+        case "In Progress":
+
+            return "progress-status";
+
+
+        case "Completed":
+
+            return "completed-status";
+
+
+        default:
+
+            return "pending-status";
+
+    }
+
+}
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadDashboardData();
+
+    }
+);
