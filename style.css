@@ -1026,3 +1026,28 @@ td {
     }
 
 }
+.diagnosing-status {
+
+    background: #e0ecff;
+
+    color: #2563eb;
+
+}
+
+
+.progress-status {
+
+    background: #dff7e7;
+
+    color: #15803d;
+
+}
+
+
+.completed-status {
+
+    background: #e8ddff;
+
+    color: #7c3aed;
+
+}
