@@ -1,3 +1,5 @@
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxRDjSBQSw9vO5o4yRI-V9tHKyM9zdSX-OE6_9R6MbTNHpU7i89qo7fx1AfC6KvV2FiXw/exec"
 const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.querySelector(".sidebar");
 
@@ -157,9 +159,25 @@ serviceType.addEventListener("change", function () {
 
 /* SUBMIT FORM */
 
-serviceForm.addEventListener("submit", function (event) {
+/* SUBMIT FORM */
+
+serviceForm.addEventListener("submit", async function (event) {
 
     event.preventDefault();
+
+
+    const submitButton =
+        serviceForm.querySelector(".submit-btn");
+
+
+    const originalButtonText =
+        submitButton.innerHTML;
+
+
+    submitButton.disabled = true;
+
+    submitButton.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
 
 
     const formData = {
@@ -191,36 +209,72 @@ serviceForm.addEventListener("submit", function (event) {
         serviceRequired:
             document.getElementById("serviceRequired").value,
 
+        problemDescription:
+            document.getElementById("problemDescription").value,
+
         estimatedCost:
-            document.getElementById("estimatedCost").value,
+            document.getElementById("estimatedCost").value || 0,
 
         amountPaid:
-            document.getElementById("amountPaid").value,
+            document.getElementById("amountPaid").value || 0,
 
         paymentStatus:
             document.getElementById("paymentStatus").value,
 
         repairStatus:
-            document.getElementById("repairStatus").value,
-
-        problemDescription:
-            document.getElementById("problemDescription").value
+            document.getElementById("repairStatus").value
 
     };
 
 
-    console.log("Service Request:", formData);
+    try {
+
+        await fetch(SCRIPT_URL, {
+
+            method: "POST",
+
+            body: JSON.stringify(formData)
+
+        });
 
 
-    alert(
-        "Service Request Created Successfully!\n\n" +
-        "Job ID: " + formData.jobId
-    );
+        alert(
+            "Service Request Created Successfully!\n\n" +
+            "Job ID: " + formData.jobId
+        );
 
 
-    serviceForm.reset();
+        serviceForm.reset();
+
+        closeModal();
 
 
-    closeModal();
+        /* Optional:
+           Refresh dashboard data later */
+
+    }
+
+
+    catch (error) {
+
+        console.error(error);
+
+
+        alert(
+            "Unable to save the service request.\n" +
+            "Please check your internet connection and try again."
+        );
+
+    }
+
+
+    finally {
+
+        submitButton.disabled = false;
+
+        submitButton.innerHTML =
+            originalButtonText;
+
+    }
 
 });
