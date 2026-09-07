@@ -852,6 +852,303 @@
     </div>
 
 </div>
+    <!-- =========================================
+     SERVICE DETAILS MODAL
+========================================= -->
+
+<div class="modal" id="detailsModal">
+
+    <div class="modal-content details-modal-content">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>Service Request Details</h2>
+
+                <p id="detailsJobId">
+                    Job ID
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-btn"
+                id="closeDetailsModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- CUSTOMER INFORMATION -->
+
+        <div class="details-section">
+
+            <h3>
+                <i class="fa-solid fa-user"></i>
+                Customer Information
+            </h3>
+
+
+            <div class="details-grid">
+
+                <div>
+
+                    <span>Customer Name</span>
+
+                    <strong id="detailCustomerName">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>Phone Number</span>
+
+                    <strong id="detailPhone">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>Email</span>
+
+                    <strong id="detailEmail">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DEVICE INFORMATION -->
+
+        <div class="details-section">
+
+            <h3>
+                <i class="fa-solid fa-mobile-screen"></i>
+                Device Information
+            </h3>
+
+
+            <div class="details-grid">
+
+                <div>
+
+                    <span>Device Brand</span>
+
+                    <strong id="detailBrand">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>Device Model</span>
+
+                    <strong id="detailModel">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>IMEI / Serial Number</span>
+
+                    <strong id="detailImei">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SERVICE INFORMATION -->
+
+        <div class="details-section">
+
+            <h3>
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                Service Information
+            </h3>
+
+
+            <div class="details-grid">
+
+                <div>
+
+                    <span>Service Type</span>
+
+                    <strong id="detailServiceType">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>Service Required</span>
+
+                    <strong id="detailService">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>Estimated Cost</span>
+
+                    <strong id="detailEstimatedCost">
+                        NLe 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="problem-box">
+
+                <span>Problem Description</span>
+
+                <p id="detailProblem">
+                    -
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAYMENT INFORMATION -->
+
+        <div class="details-section">
+
+            <h3>
+                <i class="fa-solid fa-money-bill-wave"></i>
+                Payment Information
+            </h3>
+
+
+            <div class="details-grid">
+
+                <div>
+
+                    <span>Estimated Cost</span>
+
+                    <strong id="detailCost">
+                        NLe 0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>Amount Paid</span>
+
+                    <strong id="detailAmountPaid">
+                        NLe 0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>Balance</span>
+
+                    <strong id="detailBalance">
+                        NLe 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- UPDATE STATUS -->
+
+        <div class="details-section update-section">
+
+            <h3>
+                <i class="fa-solid fa-gear"></i>
+                Repair Status Management
+            </h3>
+
+
+            <div class="status-update-container">
+
+                <select id="updateRepairStatus">
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Diagnosing">
+                        Diagnosing
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Waiting for Parts">
+                        Waiting for Parts
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
+
+                    <option value="Delivered">
+                        Delivered
+                    </option>
+
+                </select>
+
+
+                <button
+                    id="saveStatusBtn"
+                    class="submit-btn">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Update Status
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
     <script src="script.js"></script>
